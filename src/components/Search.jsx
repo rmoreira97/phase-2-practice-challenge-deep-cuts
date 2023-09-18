@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-function Search() {
+function Search({ onSearch }) {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (event) => {
+    const term = event.target.value;
+    setSearchTerm(term);
+    onSearch(term);
+  };
+
   return (
     <div className="search">
-        <input
-          type="text"
-          placeholder="Search your Tracks"
-          onChange={() => console.log("Searching...")}
-        />
-        <i>🔎</i>
-  </div>
-  )
+      <input
+        type="text"
+        placeholder="Search your Tracks"
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+      <i>🔎</i>
+    </div>
+  );
 }
 
-export default Search
+export default Search;
